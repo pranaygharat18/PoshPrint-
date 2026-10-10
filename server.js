@@ -35,33 +35,85 @@ const server = http.createServer((req, res) => {
   );
 
   let reqPath = decodeURI(req.url.split('?')[0]);
-  if (reqPath === '/' || reqPath === '') reqPath = '/index.html';
+
+  // Strip repeated slashes
+  reqPath = reqPath.replace(/\/+/g, '/');
+
+  // Support accessing via project folder name (e.g. /e-commerce or /e-commerce/...)
+  if (reqPath.startsWith('/e-commerce')) {
+    reqPath = reqPath.replace(/^\/e-commerce/, '') || '/';
+  }
+
+  if (reqPath === '/' || reqPath === '' || reqPath === '/index') {
+    reqPath = '/index.html';
+  }
+
+  // SPA virtual sections fallback to index.html
+  const SPA_SECTIONS = ['/catalog', '/shop', '/customizer', '/admin', '/checkout', '/cart', '/tracking', '/orders', '/home'];
+  if (SPA_SECTIONS.includes(reqPath.toLowerCase())) {
+    reqPath = '/index.html';
+  }
 
   // Prevent path traversal attacks (Section 1.4 security)
-  const safePath = path.normalize(reqPath).replace(/^(\.\.[\/\\])+/, '');
-  const filePath = path.join(__dirname, safePath);
+  let safePath = path.normalize(reqPath).replace(/^(\.\.[\/\\])+/, '');
+  let filePath = path.join(__dirname, safePath);
 
-  fs.stat(filePath, (err, stats) => {
-    if (err || !stats.isFile()) {
-      // Serve branded 404 page (Section 4.3)
-      const notFoundPath = path.join(__dirname, '404.html');
-      fs.readFile(notFoundPath, 'utf8', (readErr, content) => {
-        res.writeHead(404, { 'Content-Type': 'text/html; charset=UTF-8' });
-        if (!readErr) {
-          res.end(content);
-        } else {
-          res.end('<h1>404 Not Found</h1><p>The requested luxury garment could not be found.</p>');
-        }
-      });
-      return;
-    }
+  const serve404 = () => {
+    const notFoundPath = path.join(__dirname, '404.html');
+    fs.readFile(notFoundPath, 'utf8', (readErr, content) => {
+      res.writeHead(404, { 'Content-Type': 'text/html; charset=UTF-8' });
+      if (!readErr) {
+        res.end(content);
+      } else {
+        res.end(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>404 Not Found | POSHPRINT Atelier</title>
+  <style>
+    body { background: #111; color: #FFF; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; }
+    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #C4A265; font-family: Georgia, serif; }
+    p { color: #888; margin-bottom: 2rem; }
+    a { display: inline-block; background: #C4A265; color: #111; padding: 12px 24px; text-decoration: none; font-weight: 600; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>404 Not Found</h1>
+    <p>The requested luxury garment could not be found.</p>
+    <a href="/">Return to Storefront</a>
+  </div>
+</body>
+</html>`);
+      }
+    });
+  };
 
-    const ext = path.extname(filePath).toLowerCase();
-    const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+  const tryServeFile = (targetFile) => {
+    fs.stat(targetFile, (err, stats) => {
+      if (!err && stats.isFile()) {
+        const ext = path.extname(targetFile).toLowerCase();
+        const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+        res.writeHead(200, { 'Content-Type': contentType });
+        fs.createReadStream(targetFile).pipe(res);
+      } else if (!path.extname(targetFile)) {
+        // Try appending .html for clean URLs (e.g. /404 -> /404.html)
+        const htmlTarget = targetFile + '.html';
+        fs.stat(htmlTarget, (htmlErr, htmlStats) => {
+          if (!htmlErr && htmlStats.isFile()) {
+            res.writeHead(200, { 'Content-Type': MIME_TYPES['.html'] });
+            fs.createReadStream(htmlTarget).pipe(res);
+          } else {
+            serve404();
+          }
+        });
+      } else {
+        serve404();
+      }
+    });
+  };
 
-    res.writeHead(200, { 'Content-Type': contentType });
-    fs.createReadStream(filePath).pipe(res);
-  });
+  tryServeFile(filePath);
 });
 
 server.listen(PORT, () => {
