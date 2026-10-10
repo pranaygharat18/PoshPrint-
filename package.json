@@ -5,7 +5,6 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "build": "echo 'Static assets ready'",
     "start": "node server.js",
     "dev": "node server.js",
     "test": "node -e \"import('./js/products.js'); import('./js/store.js'); console.log('Syntax and modules validation passed!')\""

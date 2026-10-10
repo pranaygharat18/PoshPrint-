@@ -1,22 +1,11 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
-  "routes": [
+  "rewrites": [
     {
-      "src": "^/404$",
-      "dest": "/404.html"
-    },
-    {
-      "src": "^/(catalog|shop|customizer|admin|checkout|cart|tracking|orders|home)/?$",
-      "dest": "/index.html"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/.*",
-      "status": 404,
-      "dest": "/404.html"
+      "source": "/(catalog|shop|customizer|admin|checkout|cart|tracking|orders|home)",
+      "destination": "/index.html"
     }
   ],
   "headers": [

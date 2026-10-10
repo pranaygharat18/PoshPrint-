@@ -7,30 +7,152 @@
   <meta name="description" content="The luxury garment or page you are looking for has retired from our active collection." />
   <meta name="theme-color" content="#111111" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23111111'/><text x='50' y='68' font-family='Georgia, serif' font-size='55' font-weight='bold' fill='%23C4A265' text-anchor='middle'>P</text></svg>" />
+  <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="/css/main.css" />
   <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+  <style>
+    :root {
+      --color-bg: #111111;
+      --color-surface: #191919;
+      --color-text: #F5F5F5;
+      --color-muted: #8E8E93;
+      --color-accent: #C4A265;
+      --color-border: #2C2C2E;
+      --font-display: Georgia, "Playfair Display", serif;
+      --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+    .site-header {
+      padding: 24px 20px;
+      border-bottom: 1px solid var(--color-border);
+      background-color: var(--color-bg);
+    }
+    .brand-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      letter-spacing: 0.15em;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+    .brand-tagline {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--color-accent);
+      margin-top: 2px;
+      font-weight: 600;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .content-box { max-width: 580px; }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      margin-bottom: 14px;
+      font-family: var(--font-display);
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+    p {
+      color: var(--color-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .button-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background-color: var(--color-accent);
+      color: #111111;
+      border: 1px solid var(--color-accent);
+    }
+    .btn-primary:hover {
+      background-color: #D6B679;
+      transform: translateY(-1px);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #FFFFFF;
+      border: 1px solid var(--color-border);
+    }
+    .btn-outline:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+      transform: translateY(-1px);
+    }
+    footer {
+      padding: 24px;
+      text-align: center;
+      border-top: 1px solid var(--color-border);
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+  </style>
 </head>
-<body style="display: flex; flex-direction: column; min-height: 100vh; background-color: var(--color-bg);">
+<body>
 
   <!-- Header -->
   <header class="site-header">
-    <div class="container header-inner" style="justify-content: center;">
-      <a href="/" class="brand-logo" style="align-items: center; text-align: center;">
-        <span class="brand-title">POSHPRINT</span>
-        <span class="brand-tagline">ATELIER & BESPOKE APPAREL</span>
-      </a>
-    </div>
+    <a href="/" class="brand-logo">
+      <span class="brand-title">POSHPRINT</span>
+      <span class="brand-tagline">ATELIER & BESPOKE APPAREL</span>
+    </a>
   </header>
 
   <!-- Main 404 Hero -->
-  <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 80px 24px; text-align: center;">
-    <div style="max-width: 580px;">
-      <span style="font-size: 0.8rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent);">Error 404 • Archival Piece Not Found</span>
-      <h1 style="font-size: clamp(2.5rem, 5vw, 3.8rem); margin-block: 16px 12px; font-family: var(--font-display);">Out of the Atelier</h1>
-      <p style="color: var(--color-muted); font-size: 1rem; line-height: 1.7; margin-bottom: 32px;">
+  <main>
+    <div class="content-box">
+      <span class="badge">Error 404 • Archival Piece Not Found</span>
+      <h1>Out of the Atelier</h1>
+      <p>
         The garment silhouette, editorial drop, or page you are looking for does not exist or has been retired to our private archive.
       </p>
-      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+      <div class="button-group">
         <a href="/" class="btn btn-primary"><i class="ph ph-house"></i> Return to Storefront</a>
         <a href="/#catalogSection" class="btn btn-outline"><i class="ph ph-bag"></i> Browse Active Drops</a>
       </div>
@@ -38,7 +160,7 @@
   </main>
 
   <!-- Footer -->
-  <footer style="padding: 24px; text-align: center; border-top: 1px solid var(--color-border); font-size: 0.8rem; color: var(--color-muted);">
+  <footer>
     &copy; 2026 POSHPRINT Luxury Apparel House. All Rights Reserved.
   </footer>
 
