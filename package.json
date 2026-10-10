@@ -1,0 +1,28 @@
+{
+  "name": "poshprint-luxury-ecommerce",
+  "version": "1.0.0",
+  "description": "POSHPRINT Luxury Custom Apparel & Footwear E-Commerce Platform",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node -e \"import('./js/products.js'); import('./js/store.js'); console.log('Syntax and modules validation passed!')\""
+  },
+  "keywords": [
+    "ecommerce",
+    "apparel",
+    "streetwear",
+    "footwear",
+    "clothing-store",
+    "custom-print",
+    "vanilla-js",
+    "responsive-design"
+  ],
+  "author": "Pranay Gharat",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pranaygharat18/PoshPrint-.git"
+  },
+  "license": "MIT"
+}

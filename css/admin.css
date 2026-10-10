@@ -1,0 +1,221 @@
+/* ==========================================================================
+   POSHPRINT — ADMIN MANAGEMENT CONSOLE STYLES
+   ========================================================================== */
+
+.admin-dialog {
+  max-width: 1040px;
+  padding: 0;
+}
+
+.admin-header {
+  padding: 24px 32px;
+  background-color: var(--color-noir);
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-brand h2 {
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+}
+
+.admin-brand p {
+  font-size: 0.78rem;
+  color: var(--color-muted-light);
+}
+
+.admin-tabs-nav {
+  display: flex;
+  background-color: var(--color-surface-subtle);
+  border-bottom: 1px solid var(--color-border);
+  padding-inline: 32px;
+}
+
+.admin-nav-tab {
+  padding: 16px 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.admin-nav-tab.active {
+  color: var(--color-noir);
+  border-bottom-color: var(--color-noir);
+}
+
+.admin-body {
+  padding: 32px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* Metrics Cards */
+.admin-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.admin-stat-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
+  padding: 20px;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  margin-bottom: 6px;
+}
+
+.stat-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.stat-badge.positive {
+  color: var(--color-success);
+}
+
+.stat-badge.neutral {
+  color: var(--color-muted);
+}
+
+.stat-badge.alert {
+  color: #D32F2F;
+}
+
+/* Tables */
+.admin-section-box {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.section-box-header {
+  margin-bottom: 16px;
+}
+
+.section-box-header h3 {
+  font-size: 1.15rem;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.admin-table th, .admin-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.admin-table th {
+  background-color: var(--color-surface-subtle);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.status-pill.status-1 {
+  background-color: #E3F2FD;
+  color: #1976D2;
+}
+
+.status-pill.status-2 {
+  background-color: #FFF3E0;
+  color: #F57C00;
+}
+
+.status-pill.status-3 {
+  background-color: #F3E5F5;
+  color: #7B1FA2;
+}
+
+.status-pill.status-4 {
+  background-color: #E8F5E9;
+  color: #2E7D32;
+}
+
+.status-pill.status-5 {
+  background-color: #E0F2F1;
+  color: #00796B;
+}
+
+.admin-status-select {
+  padding: 4px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
+  font-size: 0.8rem;
+}
+
+.category-tag {
+  background-color: var(--color-surface-subtle);
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.size-stock-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  padding: 2px 4px;
+  background-color: var(--color-surface-subtle);
+  border-radius: var(--radius-xs);
+  margin-right: 4px;
+}
+
+.size-stock-badge.low-stock {
+  background-color: #FFEBEE;
+  color: #C62828;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .admin-metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .admin-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}

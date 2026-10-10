@@ -1,0 +1,411 @@
+/* ==========================================================================
+   POSHPRINT — INTERACTIVE CUSTOM APPAREL STUDIO STYLES
+   Realistic garment SVG draping, screenprint textures, and controls
+   ========================================================================== */
+
+.customizer-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+/* Stage Card (Visualizer) */
+.customizer-stage-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.stage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.stage-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.view-toggles {
+  display: flex;
+  background-color: var(--color-surface-subtle);
+  border-radius: var(--radius-xs);
+  padding: 3px;
+  gap: 2px;
+}
+
+.view-toggle-btn {
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: var(--radius-xs);
+  color: var(--color-muted);
+  transition: all var(--transition-fast);
+}
+
+.view-toggle-btn.active {
+  background-color: var(--color-surface);
+  color: var(--color-noir);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Garment Mockup Container */
+.stage-canvas-wrapper {
+  background-color: #ECE9DF;
+  border-radius: var(--radius-xs);
+  position: relative;
+  aspect-ratio: 1 / 1.15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: inset 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.garment-mockup {
+  position: relative;
+  width: 78%;
+  height: 88%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.garment-svg-silhouette {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.18));
+  transition: color 0.3s ease;
+}
+
+/* Target Print Zones */
+.print-target-zone {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.print-target-zone.front-center {
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  width: 38%;
+  aspect-ratio: 3 / 4;
+}
+
+.print-target-zone.back-oversized {
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 52%;
+  aspect-ratio: 3 / 4;
+}
+
+.print-target-zone.chest-crest {
+  top: 26%;
+  left: 36%;
+  width: 18%;
+  aspect-ratio: 1 / 1;
+}
+
+.print-artwork-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease;
+}
+
+.custom-art-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-xs);
+  mix-blend-mode: multiply;
+  opacity: 0.92;
+  filter: contrast(105%);
+}
+
+.screenprint-screen-texture {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.15) 1px, transparent 0);
+  background-size: 4px 4px;
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+.garment-hem-tag {
+  position: absolute;
+  bottom: 8px;
+  right: 18%;
+  background-color: #111111;
+  color: #FFFFFF;
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  z-index: 6;
+}
+
+.stage-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+/* Controls Card */
+.customizer-controls-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+}
+
+.controls-header {
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 16px;
+}
+
+.controls-header h3 {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+.controls-header p {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.control-group {
+  margin-bottom: 22px;
+}
+
+.control-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+.garment-select-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.garment-chip {
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+  transition: all var(--transition-fast);
+}
+
+.garment-chip.active {
+  border-color: var(--color-noir);
+  background-color: var(--color-surface);
+  box-shadow: 0 0 0 2px var(--color-noir);
+}
+
+.chip-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.chip-price {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  margin-top: 2px;
+}
+
+.color-swatch-row {
+  display: flex;
+  gap: 12px;
+}
+
+.swatch-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  outline: 1px solid var(--color-border);
+  transition: transform var(--transition-fast);
+}
+
+.swatch-btn.active {
+  outline: 2px solid var(--color-noir);
+  outline-offset: 3px;
+  transform: scale(1.05);
+}
+
+/* Dropzone */
+.artwork-upload-dropzone {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-xs);
+  padding: 24px;
+  text-align: center;
+  background-color: var(--color-bg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-bottom: 12px;
+}
+
+.artwork-upload-dropzone:hover, .artwork-upload-dropzone.drag-hover {
+  border-color: var(--color-noir);
+  background-color: var(--color-surface-subtle);
+}
+
+.dropzone-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.drop-icon {
+  font-size: 2rem;
+  color: var(--color-accent);
+}
+
+.drop-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.drop-hint {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+.preset-row {
+  margin-top: 10px;
+}
+
+.preset-label {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.preset-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.preset-btn {
+  padding: 6px 12px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  font-size: 0.75rem;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.preset-btn.active {
+  background-color: var(--color-noir);
+  color: #FFFFFF;
+  border-color: var(--color-noir);
+}
+
+.range-slider {
+  width: 100%;
+  accent-color: var(--color-noir);
+}
+
+.size-pill-row {
+  display: flex;
+  gap: 8px;
+}
+
+.size-pill {
+  flex: 1;
+  padding: 10px 4px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.size-pill.active {
+  background-color: var(--color-noir);
+  color: #FFFFFF;
+  border-color: var(--color-noir);
+}
+
+/* Customizer Bar */
+.customizer-checkout-bar {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.price-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.price-val {
+  font-size: 1.8rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-noir);
+}
+
+.price-note {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+}
+
+.btn-add-custom {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .customizer-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POSHPRINT | Luxury Apparel, Casual Wear, Professional Suits, Kids & Shoes</title>
+  <meta name="description" content="Discover POSHPRINT. Luxury printed clothing, casual streetwear, tailored professional blazers, organic kids wear, and handcrafted Italian shoes & sneakers." />
+  <meta name="keywords" content="clothing brand, casual wear, professional suits, kids clothing, luxury shoes, streetwear, graphic tees, hoodies, loafers, sneakers" />
+  <meta name="theme-color" content="#111111" />
+
+  <!-- OpenGraph Social Metadata -->
+  <meta property="og:title" content="POSHPRINT | Luxury Clothing, Professional Wear, Kids & Shoes" />
+  <meta property="og:description" content="Everyday casual streetwear, tailored business formal, organic kids collection, and artisan leather footwear." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=80" />
+
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23111111'/><text x='50' y='68' font-family='Georgia, serif' font-size='55' font-weight='bold' fill='%23C4A265' text-anchor='middle'>P</text></svg>" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/customizer.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+
+  <!-- Phosphor Icons Set -->
+  <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+
+  <!-- Structured Data JSON-LD for Search Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ClothingStore",
+    "name": "POSHPRINT",
+    "description": "Luxury clothing brand featuring casual wear, professional suits, kids collection, and artisan footwear.",
+    "url": "https://poshprint.luxury",
+    "priceRange": "$$$",
+    "currenciesAccepted": "USD, EUR, GBP, INR",
+    "paymentAccepted": "Credit Card, Apple Pay, PayPal"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- 1. Top Announcement Marquee with Currency Toggle -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner" style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 8px;">
+      <span class="announcement-text">
+        Complimentary Express Shipping On Orders Over $150 / ₹12,500 • Use Code <strong>POSH15</strong> For 15% Off
+      </span>
+      <div class="announcement-actions">
+        <!-- Interactive Multi-Currency Switcher (USD, INR, EUR, GBP) -->
+        <div style="display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">
+          <span style="font-size: 0.7rem; color: #D8CCA3; text-transform: uppercase; font-weight: 600;">Currency:</span>
+          <a href="#" class="currency-opt" data-currency="USD" style="color: #FFF; font-weight: 700; padding: 2px 4px;">USD ($)</a>
+          <span style="color: rgba(255,255,255,0.3);">|</span>
+          <a href="#" class="currency-opt" data-currency="INR" style="color: #FFF; font-weight: 700; padding: 2px 4px;">INR (₹)</a>
+          <span style="color: rgba(255,255,255,0.3);">|</span>
+          <a href="#" class="currency-opt" data-currency="EUR" style="color: #FFF; font-weight: 700; padding: 2px 4px;">EUR (€)</a>
+          <span style="color: rgba(255,255,255,0.3);">|</span>
+          <a href="#" class="currency-opt" data-currency="GBP" style="color: #FFF; font-weight: 700; padding: 2px 4px;">GBP (£)</a>
+        </div>
+        <a href="#trackingModal" id="navTrackOrderBtn" style="color: #FFFFFF; font-size: 0.75rem; margin-left: 10px;">
+          <i class="ph ph-truck"></i> Track Order
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Sticky Site Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <!-- Mobile Menu Toggle -->
+      <button type="button" class="mobile-menu-toggle header-action-btn" id="mobileMenuToggle" aria-label="Open Navigation Menu">
+        <i class="ph ph-list"></i>
+      </button>
+
+      <!-- Brand Identity Logo -->
+      <a href="#" class="brand-logo" aria-label="POSHPRINT Home">
+        <span class="brand-title">POSHPRINT</span>
+        <span class="brand-tagline">LUXURY APPAREL & FOOTWEAR</span>
+      </a>
+
+      <!-- Desktop Navigation Links (Public Choices) -->
+      <nav class="site-nav" aria-label="Primary Navigation">
+        <a href="#catalogSection" class="nav-link active" data-filter-style="all">All Drops</a>
+        <a href="#catalogSection" class="nav-link" data-filter-style="casual"><i class="ph ph-t-shirt"></i> Casual</a>
+        <a href="#catalogSection" class="nav-link" data-filter-style="professional"><i class="ph ph-suit"></i> Professional</a>
+        <a href="#catalogSection" class="nav-link" data-filter-style="kids"><i class="ph ph-baby"></i> Kids</a>
+        <a href="#catalogSection" class="nav-link" data-filter-style="shoes"><i class="ph ph-sneaker"></i> Shoes</a>
+        <a href="#customizerSection" class="nav-link"><i class="ph ph-paint-brush"></i> Bespoke Studio</a>
+      </nav>
+
+      <!-- Header Action Triggers -->
+      <div class="header-actions">
+        <!-- Admin Dashboard Trigger -->
+        <button type="button" class="header-action-btn" id="navAdminBtn" title="Admin Operations Console" aria-label="Admin Console">
+          <i class="ph ph-sliders"></i>
+        </button>
+
+        <!-- Wishlist Trigger -->
+        <button type="button" class="header-action-btn" id="navWishlistBtn" title="Saved Wishlist" aria-label="View Wishlist">
+          <i class="ph ph-heart"></i>
+          <span class="action-badge" id="headerWishlistCount" style="display: none;">0</span>
+        </button>
+
+        <!-- Cart Bag Trigger -->
+        <button type="button" class="header-action-btn" id="navCartBtn" title="Shopping Bag" aria-label="View Shopping Bag">
+          <i class="ph ph-handbag"></i>
+          <span class="action-badge" id="headerCartCount" style="display: none;">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. Mobile Navigation Drawer -->
+  <aside class="drawer" id="mobileNavDrawer" aria-label="Mobile Navigation">
+    <div class="drawer-backdrop" id="closeMobileNav"></div>
+    <div class="drawer-panel" style="width: 320px;">
+      <div class="drawer-header">
+        <span class="brand-title" style="font-size: 1.3rem;">POSHPRINT</span>
+        <button type="button" class="drawer-close-btn" data-close-drawer aria-label="Close Menu">&times;</button>
+      </div>
+      <div class="drawer-body">
+        <div style="display: flex; flex-direction: column; gap: 20px; font-size: 1rem; text-transform: uppercase; font-weight: 600;">
+          <a href="#catalogSection" class="mobile-nav-link" data-filter-style="all">All Drops</a>
+          <a href="#catalogSection" class="mobile-nav-link" data-filter-style="casual">Casual Wear</a>
+          <a href="#catalogSection" class="mobile-nav-link" data-filter-style="professional">Professional & Workwear</a>
+          <a href="#catalogSection" class="mobile-nav-link" data-filter-style="kids">Kids Collection</a>
+          <a href="#catalogSection" class="mobile-nav-link" data-filter-style="shoes">Shoes & Footwear</a>
+          <a href="#customizerSection" class="mobile-nav-link">Bespoke Studio</a>
+          <a href="#trackingModal" class="mobile-nav-link" id="mobileTrackBtn">Order Tracking</a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <!-- 4. Editorial Fashion Hero Section -->
+    <section class="hero-section" aria-label="Spring/Summer Campaign">
+      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1920&q=80" alt="PoshPrint Luxury Clothing Campaign" class="hero-bg-media" fetchpriority="high" />
+      <div class="hero-overlay-gradient"></div>
+      <div class="container hero-content">
+        <span class="hero-eyebrow">NEW ATELIER COLLECTION '26</span>
+        <h1 class="hero-title">Dressed With Distinction. <em>Crafted For Life.</em></h1>
+        <p class="hero-desc">
+          From relaxed casual organic cottons to Italian wool business tailoring, playful kids essentials, and handcrafted Blake-stitched footwear.
+        </p>
+        <div class="hero-buttons">
+          <a href="#catalogSection" class="btn btn-gold">Shop All Clothes</a>
+          <a href="#lifestyleChoicesSection" class="btn btn-outline" style="border-color: #FFFFFF; color: #FFFFFF;">
+            Explore By Lifestyle <i class="ph ph-arrow-down"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Material & Craftsmanship Standards Ribbon -->
+    <section class="hero-features-bar" aria-label="Quality Standards">
+      <div class="container features-grid">
+        <div class="feature-item">
+          <i class="ph ph-leaf feature-icon"></i>
+          <div class="feature-text">
+            <h4>100% GOTS Organic</h4>
+            <p>460gsm heavy French Terry and combed Egyptian Giza cotton.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <i class="ph ph-suit feature-icon"></i>
+          <div class="feature-text">
+            <h4>Italian Tailoring</h4>
+            <p>Super 130s Biella merino wool & Mulberry silk twill.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <i class="ph ph-sneaker feature-icon"></i>
+          <div class="feature-text">
+            <h4>Artisan Footwear</h4>
+            <p>Tuscan hand-stitched leather loafers & Nappa sneakers.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <i class="ph ph-baby feature-icon"></i>
+          <div class="feature-text">
+            <h4>Gentle Kids Wear</h4>
+            <p>Non-toxic hypoallergenic plant dyes with flatlock seams.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Public Choices / Lifestyle Sections Showcase -->
+    <section class="catalog-section" id="lifestyleChoicesSection" style="padding-bottom: 30px;" aria-label="Public Choices Collections">
+      <div class="container">
+        <div class="catalog-header" style="text-align: center; margin-bottom: 36px;">
+          <span class="section-subtitle">CURATED FOR YOUR LIFESTYLE</span>
+          <h2 class="section-title">Shop According To Your Occasion</h2>
+          <p style="color: var(--color-muted); max-width: 600px; margin: 8px auto 0;">
+            Explore dedicated wardrobe sections tailored for everyday ease, executive elegance, playful youth, and luxury footwear.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;" class="lifestyle-grid">
+          <!-- Casual Card -->
+          <div class="lifestyle-card" data-filter-style="casual" style="position: relative; border-radius: 4px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; box-shadow: var(--shadow-sm); group">
+            <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=700&q=80" alt="Casual Wear" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,17,17,0.85) 0%, rgba(17,17,17,0.2) 60%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; color: #FFF;">
+              <span style="font-size: 0.72rem; letter-spacing: 0.1em; color: var(--color-accent); text-transform: uppercase; font-weight: 700;">Everyday Comfort</span>
+              <h3 style="font-size: 1.4rem; margin-top: 2px;">Casual Wear</h3>
+              <p style="font-size: 0.78rem; color: rgba(255,255,255,0.8); margin-top: 4px;">Heavyweight graphic tees, hoodies, and breezy linen shirts.</p>
+              <span style="margin-top: 10px; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; text-decoration: underline;">Shop Casual &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Professional Card -->
+          <div class="lifestyle-card" data-filter-style="professional" style="position: relative; border-radius: 4px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; box-shadow: var(--shadow-sm);">
+            <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=700&q=80" alt="Professional & Formal Wear" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,17,17,0.85) 0%, rgba(17,17,17,0.2) 60%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; color: #FFF;">
+              <span style="font-size: 0.72rem; letter-spacing: 0.1em; color: var(--color-accent); text-transform: uppercase; font-weight: 700;">Executive Tailoring</span>
+              <h3 style="font-size: 1.4rem; margin-top: 2px;">Professional</h3>
+              <p style="font-size: 0.78rem; color: rgba(255,255,255,0.8); margin-top: 4px;">Double-breasted blazers, silk trench coats, and Giza cotton shirts.</p>
+              <span style="margin-top: 10px; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; text-decoration: underline;">Shop Professional &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Kids Card -->
+          <div class="lifestyle-card" data-filter-style="kids" style="position: relative; border-radius: 4px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; box-shadow: var(--shadow-sm);">
+            <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=700&q=80" alt="Kids Clothing" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,17,17,0.85) 0%, rgba(17,17,17,0.2) 60%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; color: #FFF;">
+              <span style="font-size: 0.72rem; letter-spacing: 0.1em; color: var(--color-accent); text-transform: uppercase; font-weight: 700;">Pure & Organic</span>
+              <h3 style="font-size: 1.4rem; margin-top: 2px;">Kids Collection</h3>
+              <p style="font-size: 0.78rem; color: rgba(255,255,255,0.8); margin-top: 4px;">Gentle organic printed tees, cozy hoodies, and matching sets.</p>
+              <span style="margin-top: 10px; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; text-decoration: underline;">Shop Kids &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Shoes Card -->
+          <div class="lifestyle-card" data-filter-style="shoes" style="position: relative; border-radius: 4px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; box-shadow: var(--shadow-sm);">
+            <img src="https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=700&q=80" alt="Luxury Shoes" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" />
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,17,17,0.85) 0%, rgba(17,17,17,0.2) 60%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; color: #FFF;">
+              <span style="font-size: 0.72rem; letter-spacing: 0.1em; color: var(--color-accent); text-transform: uppercase; font-weight: 700;">Artisan Footwear</span>
+              <h3 style="font-size: 1.4rem; margin-top: 2px;">Shoes & Footwear</h3>
+              <p style="font-size: 0.78rem; color: rgba(255,255,255,0.8); margin-top: 4px;">Italian calfskin loafers, minimalist sneakers, and Chelsea boots.</p>
+              <span style="margin-top: 10px; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; text-decoration: underline;">Shop Shoes &rarr;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Main Apparel & Shoes Catalog -->
+    <section class="catalog-section" id="catalogSection" aria-label="Clothes and Shoes Catalog">
+      <div class="container">
+        <div class="catalog-header">
+          <span class="section-subtitle">THE COMPLETE ATELIER ARCHIVE</span>
+          <h2 class="section-title">Discover Our Garments & Shoes</h2>
+          <!-- Lifestyle & Public Choices Tabs (All, Casual, Professional, Kids, Shoes) -->
+          <div class="category-tabs-row" id="categoryTabsContainer"></div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="filter-toolbar">
+          <!-- Live Debounced Search -->
+          <div class="search-box-wrap">
+            <i class="ph ph-magnifying-glass search-icon"></i>
+            <input type="text" id="storeSearchInput" class="search-input" placeholder="Search by garment, fabric, shoes, or style..." />
+          </div>
+
+          <!-- Filter Controls -->
+          <div class="filter-groups-wrap">
+            <!-- Gender Filter -->
+            <div class="filter-item-block">
+              <span class="filter-lbl">Audience:</span>
+              <button type="button" class="gender-filter-btn active" data-gender="all">All</button>
+              <button type="button" class="gender-filter-btn" data-gender="men">Men</button>
+              <button type="button" class="gender-filter-btn" data-gender="women">Women</button>
+              <button type="button" class="gender-filter-btn" data-gender="kids">Kids</button>
+            </div>
+
+            <!-- Sort By -->
+            <div class="filter-item-block">
+              <span class="filter-lbl">Sort:</span>
+              <select id="storeSortSelect" class="sort-select">
+                <option value="featured">Featured Picks</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Client Rating</option>
+                <option value="newest">New Arrivals</option>
+              </select>
+            </div>
+
+            <!-- Counter Badge -->
+            <span class="action-badge" id="productCountBadge" style="position: static; font-size: 0.75rem; padding: 6px 12px; background: var(--color-surface-subtle); color: var(--color-noir); border: 1px solid var(--color-border);">
+              14 Available Pieces
+            </span>
+          </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="product-grid" id="productGrid" role="region" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- 8. Interactive Bespoke Custom Apparel Studio -->
+    <section class="customizer-section" id="customizerSection" aria-label="Interactive Custom Print Studio">
+      <div class="container">
+        <div class="customizer-section-header">
+          <span class="section-subtitle">LIVE CLOTHING WORKSHOP</span>
+          <h2 class="section-title">Bespoke Custom Apparel Studio</h2>
+          <p style="color: var(--color-muted); max-width: 600px; margin: 8px auto 0;">
+            Upload your custom graphic, artwork, or logo. We print it with 12-color archival Japanese pigments directly onto our heavyweight blanks or kids sets.
+          </p>
+        </div>
+
+        <!-- Injected Customizer Deck -->
+        <div id="customizerContainer"></div>
+      </div>
+    </section>
+
+    <!-- 9. Craftsmanship & Fabric Standards -->
+    <section class="catalog-section" id="atelierManifesto" style="background-color: var(--color-surface); border-top: 1px solid var(--color-border);">
+      <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+        <div>
+          <span class="section-subtitle">OUR ATELIER ETHOS</span>
+          <h2 class="section-title" style="margin-block: 12px 24px;">Garments Designed To Outlive Fast Fashion.</h2>
+          <p style="color: var(--color-charcoal); line-height: 1.8; margin-bottom: 20px;">
+            Every POSHPRINT garment is produced from certified organic fibers, Italian merino wools, and full-grain leathers. By eliminating cheap polyester blends, our clothes drape with statuesque presence, breath naturally, and soften beautifully with every wash.
+          </p>
+          <div style="display: flex; gap: 32px; flex-wrap: wrap;">
+            <div>
+              <h3 style="font-size: 2.2rem; font-family: var(--font-display); color: var(--color-accent);">460<small style="font-size: 1rem;">GSM</small></h3>
+              <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-muted); font-weight: 700;">Heavy French Terry</span>
+            </div>
+            <div>
+              <h3 style="font-size: 2.2rem; font-family: var(--font-display); color: var(--color-accent);">130<small style="font-size: 1rem;">s</small></h3>
+              <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-muted); font-weight: 700;">Super Merino Wool</span>
+            </div>
+            <div>
+              <h3 style="font-size: 2.2rem; font-family: var(--font-display); color: var(--color-accent);">100<small style="font-size: 1rem;">%</small></h3>
+              <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-muted); font-weight: 700;">Italian Calf Leather</span>
+            </div>
+          </div>
+        </div>
+        <div style="position: relative;">
+          <img src="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1000&q=80" alt="Luxury Apparel Craftsmanship" style="border-radius: var(--radius-sm); box-shadow: var(--shadow-lg); width: 100%; aspect-ratio: 4/5; object-fit: cover;" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 10. Storefront Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3 class="brand-title">POSHPRINT</h3>
+          <p>
+            Luxury clothing brand featuring casual wear, professional suits, kids collection, and artisan shoes engineered with archival craftsmanship.
+          </p>
+          <div style="margin-top: 20px; display: flex; gap: 14px; font-size: 1.25rem;">
+            <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="ph ph-pinterest-logo"></i></a>
+            <a href="#" aria-label="Twitter"><i class="ph ph-x-logo"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Public Collections</h4>
+          <ul class="footer-links">
+            <li><a href="#catalogSection" data-filter-style="casual">Casual Wear</a></li>
+            <li><a href="#catalogSection" data-filter-style="professional">Professional & Suits</a></li>
+            <li><a href="#catalogSection" data-filter-style="kids">Kids Collection</a></li>
+            <li><a href="#catalogSection" data-filter-style="shoes">Shoes & Footwear</a></li>
+            <li><a href="#customizerSection">Bespoke Custom Apparel</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Client Concierge</h4>
+          <ul class="footer-links">
+            <li><a href="#trackingModal" id="footerTrackLink">Order Tracking & Manifest</a></li>
+            <li><a href="#sizeGuideModal" id="btnOpenSizeGuideFooter">Garment Size Guide</a></li>
+            <li><a href="#returnsModal" id="btnOpenReturnsModal">30-Day Return & Exchange Policy</a></li>
+            <li><a href="tel:+18005557674"><i class="ph ph-phone"></i> +1 (800) 555-POSH</a></li>
+            <li><a href="mailto:concierge@poshprint.luxury?subject=PoshPrint%20Atelier%20Client%20Inquiry"><i class="ph ph-envelope"></i> concierge@poshprint.luxury</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal & Compliance</h4>
+          <ul class="footer-links">
+            <li><a href="#privacyModal" id="btnOpenPrivacyModal">Privacy Policy (GDPR / CCPA)</a></li>
+            <li><a href="#termsModal" id="btnOpenTermsModal">Terms of Service & Sales</a></li>
+            <li><a href="#siteHeader">Authenticity & Ethical Sourcing</a></li>
+          </ul>
+          <div style="margin-top: 16px;">
+            <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-muted-light); font-weight: 700; display: block; margin-bottom: 6px;">Pricing Currencies</span>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <button type="button" class="currency-opt btn btn-sm btn-outline" data-currency="USD" style="color: #FFF; border-color: rgba(255,255,255,0.3); padding: 4px 8px; font-size: 0.72rem;">$ USD</button>
+              <button type="button" class="currency-opt btn btn-sm btn-outline" data-currency="INR" style="color: #FFF; border-color: rgba(255,255,255,0.3); padding: 4px 8px; font-size: 0.72rem;">₹ INR</button>
+              <button type="button" class="currency-opt btn btn-sm btn-outline" data-currency="EUR" style="color: #FFF; border-color: rgba(255,255,255,0.3); padding: 4px 8px; font-size: 0.72rem;">€ EUR</button>
+              <button type="button" class="currency-opt btn btn-sm btn-outline" data-currency="GBP" style="color: #FFF; border-color: rgba(255,255,255,0.3); padding: 4px 8px; font-size: 0.72rem;">£ GBP</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <span>&copy; <span id="currentYear">2026</span> POSHPRINT Luxury Apparel & Footwear House. All Rights Reserved.</span>
+        <div class="payment-badges-row">
+          <i class="ph ph-credit-card" title="Visa / Mastercard"></i>
+          <i class="ph ph-apple-logo" title="Apple Pay"></i>
+          <i class="ph ph-paypal-logo" title="PayPal"></i>
+          <i class="ph ph-shield-check" title="256-Bit SSL Encrypted"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       MODALS & SLIDE-OVER DRAWERS
+       ========================================================================= -->
+
+  <!-- A. Cart Bag Slide-Over Drawer -->
+  <aside class="drawer" id="cartDrawer" aria-label="Shopping Bag">
+    <div class="drawer-backdrop" id="cartDrawerBackdrop"></div>
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <h3>Your Luxury Bag</h3>
+        <button type="button" class="drawer-close-btn" id="closeCartDrawer" aria-label="Close Bag">&times;</button>
+      </div>
+
+      <div class="drawer-body">
+        <!-- Free Shipping Progress -->
+        <div class="shipping-progress-box">
+          <div class="shipping-progress-text" id="freeShippingText">
+            Add more to unlock Complimentary Express Delivery
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="freeShippingProgressBar" style="width: 60%;"></div>
+          </div>
+        </div>
+
+        <!-- Applied Promo Tag Container -->
+        <div id="cartAppliedPromoTag"></div>
+
+        <!-- Cart Items List -->
+        <div class="cart-items-list" id="cartDrawerItems"></div>
+      </div>
+
+      <div class="drawer-footer">
+        <!-- Promo Code Input Form -->
+        <form class="promo-input-row" id="cartPromoForm">
+          <input type="text" id="cartPromoInput" class="promo-input" placeholder="Promo code (e.g. POSH15)" />
+          <button type="submit" class="btn btn-sm btn-outline">Apply</button>
+        </form>
+
+        <!-- Subtotal Row -->
+        <div class="cart-subtotal-row">
+          <span class="cart-subtotal-lbl">Subtotal:</span>
+          <span class="cart-subtotal-val" id="cartDrawerSubtotal">$0</span>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-checkout" id="btnProceedToCheckout">
+          <i class="ph ph-lock-key"></i> Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- B. Wishlist Drawer -->
+  <aside class="drawer" id="wishlistDrawer" aria-label="Wishlist">
+    <div class="drawer-backdrop" id="wishlistDrawerBackdrop"></div>
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <h3>Saved Pieces</h3>
+        <button type="button" class="drawer-close-btn" id="closeWishlistDrawer" aria-label="Close Wishlist">&times;</button>
+      </div>
+      <div class="drawer-body" id="wishlistDrawerItems"></div>
+    </div>
+  </aside>
+
+  <!-- C. Product Detail Modal (PDP) -->
+  <div class="modal" id="pdpModal" role="dialog" aria-modal="true" aria-labelledby="pdpModalTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-container">
+      <div class="modal-dialog">
+        <button type="button" class="modal-close-corner" data-close-modal aria-label="Close details">&times;</button>
+        <div id="pdpModalContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D. Interactive Size Guide Modal -->
+  <div class="modal" id="sizeGuideModal" role="dialog" aria-modal="true" aria-labelledby="sizeGuideTitle">
+    <div class="modal-backdrop" id="closeSizeGuideModal"></div>
+    <div class="modal-container">
+      <div class="modal-dialog size-guide-dialog">
+        <button type="button" class="modal-close-corner" id="closeSizeGuideModalCorner" onclick="document.getElementById('sizeGuideModal').classList.remove('active');">&times;</button>
+        <h3 id="sizeGuideTitle" style="font-size: 1.6rem; margin-bottom: 6px;">Garment Measurements & Fit Guide</h3>
+        <p style="color: var(--color-muted); font-size: 0.85rem; margin-bottom: 24px;">All dimensions represent flat measurements in centimeters and inches.</p>
+        <div id="sizeChartTableWrap"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E. Multi-Step Checkout Modal -->
+  <div class="modal" id="checkoutModal" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-container">
+      <div class="modal-dialog checkout-modal-dialog">
+        <div class="checkout-header">
+          <div class="checkout-steps-bar">
+            <div class="step-indicator active" id="stepIndicator1">
+              <span class="step-num">1</span> <span>Address</span>
+            </div>
+            <i class="ph ph-caret-right" style="color: var(--color-muted);"></i>
+            <div class="step-indicator" id="stepIndicator2">
+              <span class="step-num">2</span> <span>Delivery</span>
+            </div>
+            <i class="ph ph-caret-right" style="color: var(--color-muted);"></i>
+            <div class="step-indicator" id="stepIndicator3">
+              <span class="step-num">3</span> <span>Payment</span>
+            </div>
+          </div>
+          <button type="button" class="drawer-close-btn" data-close-modal>&times;</button>
+        </div>
+
+        <div class="checkout-body">
+          <!-- Step Panels Column -->
+          <div class="checkout-form-col">
+            <!-- Step 1: Customer Contact & Address -->
+            <div class="checkout-step-panel active" id="checkoutStep1">
+              <h3 style="font-size: 1.3rem; margin-bottom: 16px;">1. Customer & Shipping Address</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="shippingFullName">Full Legal Name</label>
+                  <input type="text" id="shippingFullName" class="form-input" placeholder="e.g. Julian Vance" value="Julian Vance" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="shippingEmail">Email Address</label>
+                  <input type="email" id="shippingEmail" class="form-input" placeholder="e.g. julian@atelier.com" value="julian@atelier.com" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="shippingAddress">Street Address</label>
+                <input type="text" id="shippingAddress" class="form-input" placeholder="e.g. 450 Mercer Street, Apt 4B" value="450 Mercer Street, Apt 4B" required />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="shippingCity">City</label>
+                  <input type="text" id="shippingCity" class="form-input" placeholder="New York" value="New York" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="shippingZip">Postal Code</label>
+                  <input type="text" id="shippingZip" class="form-input" placeholder="10013" value="10013" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="shippingCountry">Country</label>
+                  <select id="shippingCountry" class="form-input">
+                    <option value="United States">United States</option>
+                    <option value="India">India</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="France">France</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Canada">Canada</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="shippingPhone">Phone (For Courier SMS)</label>
+                  <input type="tel" id="shippingPhone" class="form-input" placeholder="+1 (555) 019-2831" value="+1 (555) 019-2831" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Shipping Options -->
+            <div class="checkout-step-panel" id="checkoutStep2">
+              <h3 style="font-size: 1.3rem; margin-bottom: 16px;">2. Select Dispatch Method</h3>
+              <div class="shipping-options-list">
+                <label class="shipping-option-card">
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <input type="radio" name="shippingMethod" value="standard" data-cost="0" checked />
+                    <div>
+                      <strong>Complimentary Insured Ground</strong><br />
+                      <small class="text-muted">Estimated 3 - 5 business days with full tracking</small>
+                    </div>
+                  </div>
+                  <strong>Free</strong>
+                </label>
+
+                <label class="shipping-option-card">
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <input type="radio" name="shippingMethod" value="express" data-cost="25" />
+                    <div>
+                      <strong>Express Air Priority</strong><br />
+                      <small class="text-muted">Estimated 1 - 2 business days via FedEx International</small>
+                    </div>
+                  </div>
+                  <strong>+$25</strong>
+                </label>
+
+                <label class="shipping-option-card">
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <input type="radio" name="shippingMethod" value="whiteglove" data-cost="45" />
+                    <div>
+                      <strong>White Glove Atelier Delivery</strong><br />
+                      <small class="text-muted">Hand-delivered in wooden presentation box & garment steamer bag</small>
+                    </div>
+                  </div>
+                  <strong>+$45</strong>
+                </label>
+              </div>
+            </div>
+
+            <!-- Step 3: Payment Method -->
+            <div class="checkout-step-panel" id="checkoutStep3">
+              <h3 style="font-size: 1.3rem; margin-bottom: 16px;">3. Secure Payment</h3>
+              <div style="display: flex; gap: 16px; margin-bottom: 20px;">
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                  <input type="radio" name="paymentType" value="card" checked />
+                  <span>Credit / Debit Card</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                  <input type="radio" name="paymentType" value="applepay" />
+                  <span>Apple Pay</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                  <input type="radio" name="paymentType" value="cod" />
+                  <span>Cash on Delivery</span>
+                </label>
+              </div>
+
+              <!-- Credit Card Fields -->
+              <div id="creditCardFieldsWrap">
+                <div class="form-group">
+                  <label class="form-label" for="checkoutCardNumber">Card Number</label>
+                  <input type="text" id="checkoutCardNumber" class="form-input" placeholder="4532 •••• •••• 8920" value="4532 8920 1823 4902" maxlength="19" required />
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="checkoutCardExpiry">Expiry Date</label>
+                    <input type="text" id="checkoutCardExpiry" class="form-input" placeholder="MM/YY" value="08/28" maxlength="5" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="checkoutCardCVV">Security CVV</label>
+                    <input type="password" id="checkoutCardCVV" class="form-input" placeholder="•••" value="892" maxlength="4" required />
+                  </div>
+                </div>
+                <span style="font-size: 0.75rem; color: var(--color-muted); display: flex; align-items: center; gap: 6px;">
+                  <i class="ph ph-lock-key"></i> 256-Bit SSL Encrypted Sandbox. Safe test processing.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Summary Sticky Column -->
+          <div class="checkout-summary-col">
+            <div class="checkout-summary-box">
+              <h4 style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em;">Order Summary</h4>
+              <div class="checkout-items-list" id="checkoutSummaryItems"></div>
+              
+              <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem;">
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Subtotal:</span> <span id="checkoutSummarySubtotal">$0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; color: var(--color-accent);">
+                  <span>Promo Discount:</span> <span id="checkoutSummaryDiscount">-$0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Shipping:</span> <span id="checkoutSummaryShipping">Complimentary</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 1.15rem; font-weight: 700; border-top: 1px solid var(--color-border); padding-top: 10px;">
+                  <span>Total:</span> <span id="checkoutSummaryTotal">$0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="checkout-footer-nav">
+          <button type="button" class="btn btn-outline" id="btnBackCheckoutStep" style="display: none;">
+            <i class="ph ph-arrow-left"></i> Back
+          </button>
+          <div style="margin-left: auto;">
+            <button type="button" class="btn btn-primary" id="btnNextCheckoutStep">
+              Continue <i class="ph ph-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F. Order Confirmation Receipt Modal -->
+  <div class="modal" id="receiptModal" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-container">
+      <div class="modal-dialog receipt-dialog">
+        <button type="button" class="modal-close-corner" data-close-modal>&times;</button>
+        <div id="receiptContent"></div>
+        <div style="margin-top: 24px; display: flex; justify-content: space-between; align-items: center;">
+          <button type="button" class="btn btn-outline" id="btnPrintReceipt">
+            <i class="ph ph-printer"></i> Print Official Receipt
+          </button>
+          <button type="button" class="btn btn-primary" data-close-modal>
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- G. Real-Time Order Tracking Modal -->
+  <div class="modal" id="trackingModal" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-container">
+      <div class="modal-dialog" style="max-width: 780px;">
+        <button type="button" class="modal-close-corner" data-close-modal>&times;</button>
+        <div style="padding: 32px 32px 0 32px;">
+          <h2 style="font-size: 1.8rem;">Atelier Order Tracker</h2>
+          <p style="color: var(--color-muted); font-size: 0.88rem; margin-top: 4px;">Track live progress of your screen-printing and dispatch.</p>
+          
+          <!-- Search Form -->
+          <form id="orderTrackingForm" style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;">
+            <input type="text" id="trackOrderIdInput" class="form-input" placeholder="Order ID (e.g. POSH-89412)" style="flex: 1; min-width: 200px;" value="POSH-89412" required />
+            <input type="email" id="trackOrderEmailInput" class="form-input" placeholder="Customer Email" style="flex: 1; min-width: 200px;" value="julian@atelier.com" />
+            <button type="submit" class="btn btn-primary">Track Order</button>
+          </form>
+        </div>
+        <div id="trackingProgressContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- H. Admin Management Console Modal -->
+  <div class="modal" id="adminModal" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-container">
+      <div class="modal-dialog admin-dialog">
+        <div class="admin-header">
+          <div class="admin-brand">
+            <h2>POSHPRINT ATELIER MANAGEMENT</h2>
+            <p>Live Store Operations, Orders Database & Inventory Control</p>
+          </div>
+          <button type="button" class="drawer-close-btn" data-close-modal style="color: #FFF;">&times;</button>
+        </div>
+
+        <nav class="admin-tabs-nav">
+          <button type="button" class="admin-nav-tab active" data-tab="overview">Overview Analytics</button>
+          <button type="button" class="admin-nav-tab" data-tab="orders">Customer Orders</button>
+          <button type="button" class="admin-nav-tab" data-tab="inventory">Inventory & Pricing</button>
+        </nav>
+
+        <div class="admin-body">
+          <div id="adminTabContent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- J. Privacy Policy Modal (GDPR / CCPA) -->
+  <div class="modal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-container">
+      <div class="modal-dialog size-guide-dialog">
+        <button type="button" class="modal-close-corner" data-close-modal aria-label="Close Privacy Policy">&times;</button>
+        <h3 id="privacyModalTitle" style="font-size: 1.6rem; margin-bottom: 8px;">Privacy & Data Protection Policy</h3>
+        <p style="color: var(--color-muted); font-size: 0.8rem; margin-bottom: 20px;">Effective Date: January 1, 2026 • Compliant with GDPR, CCPA & Global E-Commerce Standards</p>
+        <div style="font-size: 0.85rem; line-height: 1.7; color: var(--color-charcoal); display: flex; flex-direction: column; gap: 14px; max-height: 60vh; overflow-y: auto; padding-right: 8px;">
+          <div>
+            <strong>1. Data We Collect:</strong> When you place an order or create an atelier profile, POSHPRINT collects your contact information (name, email, delivery address, phone number). We do not store raw payment card data on our servers; card transactions are tokenized via encrypted payment processors.
+          </div>
+          <div>
+            <strong>2. How We Use Data:</strong> Your data is used exclusively to dispatch orders, send real-time tracking SMS/emails, provide concierge support, and protect against fraudulent transactions.
+          </div>
+          <div>
+            <strong>3. Cookies & Security:</strong> We use secure, strictly necessary session cookies for shopping bag persistence and CSRF mitigation. We never sell or rent your personal browsing data to third-party data brokers.
+          </div>
+          <div>
+            <strong>4. Your Rights:</strong> Under GDPR and CCPA, you retain full rights to inspect, update, or permanently delete your stored data by contacting our Data Protection Officer at <a href="mailto:privacy@poshprint.luxury" style="text-decoration: underline;">privacy@poshprint.luxury</a>.
+          </div>
+        </div>
+        <div style="margin-top: 20px; text-align: right;">
+          <button type="button" class="btn btn-sm btn-primary" data-close-modal>Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- K. Terms of Service & Purchase Modal -->
+  <div class="modal" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsModalTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-container">
+      <div class="modal-dialog size-guide-dialog">
+        <button type="button" class="modal-close-corner" data-close-modal aria-label="Close Terms">&times;</button>
+        <h3 id="termsModalTitle" style="font-size: 1.6rem; margin-bottom: 8px;">Terms of Service & Atelier Sales</h3>
+        <p style="color: var(--color-muted); font-size: 0.8rem; margin-bottom: 20px;">Last Updated: October 2026 • POSHPRINT Global Fashion House</p>
+        <div style="font-size: 0.85rem; line-height: 1.7; color: var(--color-charcoal); display: flex; flex-direction: column; gap: 14px; max-height: 60vh; overflow-y: auto; padding-right: 8px;">
+          <div>
+            <strong>1. Authenticity Guarantee:</strong> All POSHPRINT garments, fabrics, and footwear are guaranteed 100% authentic, crafted from ethically sourced GOTS organic cottons, Biella wools, and full-grain Italian leathers.
+          </div>
+          <div>
+            <strong>2. Pricing & Currency:</strong> Prices are displayed in USD ($), INR (₹), EUR (€), and GBP (£) according to your active selection. All orders are processed securely with anti-tamper price verification.
+          </div>
+          <div>
+            <strong>3. Custom Studio Orders:</strong> Custom print garments produced via our Atelier Studio are prepared to client specifications. In the unlikely event of print misalignment or structural defect, a complimentary remake or full refund is provided.
+          </div>
+          <div>
+            <strong>4. Intellectual Property:</strong> All designs, typography, silhouettes, and trademarks are proprietary to POSHPRINT Luxury Apparel. Unauthorized commercial duplication is prohibited.
+          </div>
+        </div>
+        <div style="margin-top: 20px; text-align: right;">
+          <button type="button" class="btn btn-sm btn-primary" data-close-modal>Accept & Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- L. Return & Exchange Policy Modal -->
+  <div class="modal" id="returnsModal" role="dialog" aria-modal="true" aria-labelledby="returnsModalTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-container">
+      <div class="modal-dialog size-guide-dialog">
+        <button type="button" class="modal-close-corner" data-close-modal aria-label="Close Returns Policy">&times;</button>
+        <h3 id="returnsModalTitle" style="font-size: 1.6rem; margin-bottom: 8px;">30-Day Luxury Return & Exchange Guarantee</h3>
+        <p style="color: var(--color-muted); font-size: 0.8rem; margin-bottom: 20px;">Hassle-Free Returns with Prepaid Insured Courier Pick-Up</p>
+        <div style="font-size: 0.85rem; line-height: 1.7; color: var(--color-charcoal); display: flex; flex-direction: column; gap: 14px; max-height: 60vh; overflow-y: auto; padding-right: 8px;">
+          <div>
+            <strong>30-Day Window:</strong> We offer a complimentary 30-day return window from the day your package is signed for by our courier service.
+          </div>
+          <div>
+            <strong>Garment Condition Standards:</strong> Items must be in unworn, unwashed, brand-new condition with all original atelier hangtags and cotton dust bags intact. Footwear must be tried on carpeted surfaces.
+          </div>
+          <div>
+            <strong>How to Initiate:</strong> Go to our <a href="#trackingModal" style="text-decoration: underline;" onclick="document.getElementById('returnsModal').classList.remove('active'); document.getElementById('trackingModal').classList.add('active');">Order Tracker</a> or email <a href="mailto:returns@poshprint.luxury" style="text-decoration: underline;">returns@poshprint.luxury</a> with your Order ID (e.g. POSH-89412) to receive an instant prepaid return shipping label.
+          </div>
+        </div>
+        <div style="margin-top: 20px; text-align: right;">
+          <button type="button" class="btn btn-sm btn-primary" data-close-modal>Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- I. Toast Notifications Container -->
+  <div class="posh-toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- JavaScript Bundle (ES Modules) -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
