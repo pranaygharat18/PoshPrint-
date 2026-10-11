@@ -184,16 +184,50 @@ class App {
       });
     }
 
-    // Mobile Menu Toggle
+    // Mobile Menu & Drawers
     const mobileMenuBtn = document.getElementById('mobileMenuToggle');
     const mobileNavDrawer = document.getElementById('mobileNavDrawer');
-    const closeMobileNav = document.getElementById('closeMobileNav');
 
     if (mobileMenuBtn && mobileNavDrawer) {
       mobileMenuBtn.addEventListener('click', () => mobileNavDrawer.classList.add('active'));
     }
-    if (closeMobileNav && mobileNavDrawer) {
-      closeMobileNav.addEventListener('click', () => mobileNavDrawer.classList.remove('active'));
+
+    // Close any drawer on [data-close-drawer]
+    document.querySelectorAll('[data-close-drawer]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const drawer = btn.closest('.drawer');
+        if (drawer) drawer.classList.remove('active');
+        else document.querySelectorAll('.drawer').forEach(d => d.classList.remove('active'));
+      });
+    });
+
+    // Close mobile nav drawer when any link inside it is tapped
+    if (mobileNavDrawer) {
+      mobileNavDrawer.querySelectorAll('.mobile-nav-link, .mobile-quick-action-btn').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNavDrawer.classList.remove('active');
+        });
+      });
+    }
+
+    // Quick mobile action buttons
+    const mobileAdminBtn = document.getElementById('mobileAdminBtn');
+    if (mobileAdminBtn) {
+      mobileAdminBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        mobileNavDrawer?.classList.remove('active');
+        document.getElementById('adminModal')?.classList.add('active');
+      });
+    }
+
+    const mobileSizeGuideBtn = document.getElementById('mobileSizeGuideBtn');
+    if (mobileSizeGuideBtn) {
+      mobileSizeGuideBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        mobileNavDrawer?.classList.remove('active');
+        this.renderSizeGuide();
+        document.getElementById('sizeGuideModal')?.classList.add('active');
+      });
     }
 
     // PDP Modal Close
@@ -501,8 +535,19 @@ class App {
 
     grid.querySelectorAll('.btn-quick-view, [data-open-pdp]').forEach(btn => {
       btn.addEventListener('click', (e) => {
+        e.stopPropagation();
         const id = btn.dataset.quickviewId || btn.dataset.openPdp;
         this.openPdp(id);
+      });
+    });
+
+    // Touch-friendly: tapping product media directly opens PDP
+    grid.querySelectorAll('.product-media-wrap').forEach(wrap => {
+      wrap.addEventListener('click', (e) => {
+        if (e.target.closest('.wishlist-btn')) return;
+        const card = wrap.closest('.product-card');
+        const id = card?.dataset.productId;
+        if (id) this.openPdp(id);
       });
     });
   }

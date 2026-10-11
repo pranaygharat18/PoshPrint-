@@ -50,29 +50,23 @@
 
   <!-- 1. Top Announcement Marquee with Currency Toggle -->
   <div class="announcement-bar">
-    <div class="container announcement-inner"
-      style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 8px;">
+    <div class="container announcement-inner">
       <span class="announcement-text">
-        Complimentary Express Shipping On Orders Over $150 / ₹12,500 • Use Code <strong>POSH15</strong> For 15% Off
+        Complimentary Express Shipping Over $150 / ₹12,500 • Use Code <strong>POSH15</strong> For 15% Off
       </span>
       <div class="announcement-actions">
         <!-- Interactive Multi-Currency Switcher (USD, INR, EUR, GBP) -->
-        <div
-          style="display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">
-          <span style="font-size: 0.7rem; color: #D8CCA3; text-transform: uppercase; font-weight: 600;">Currency:</span>
-          <a href="#" class="currency-opt" data-currency="USD"
-            style="color: #FFF; font-weight: 700; padding: 2px 4px;">USD ($)</a>
-          <span style="color: rgba(255,255,255,0.3);">|</span>
-          <a href="#" class="currency-opt" data-currency="INR"
-            style="color: #FFF; font-weight: 700; padding: 2px 4px;">INR (₹)</a>
-          <span style="color: rgba(255,255,255,0.3);">|</span>
-          <a href="#" class="currency-opt" data-currency="EUR"
-            style="color: #FFF; font-weight: 700; padding: 2px 4px;">EUR (€)</a>
-          <span style="color: rgba(255,255,255,0.3);">|</span>
-          <a href="#" class="currency-opt" data-currency="GBP"
-            style="color: #FFF; font-weight: 700; padding: 2px 4px;">GBP (£)</a>
+        <div class="announcement-currency-box">
+          <span class="currency-label">Currency:</span>
+          <a href="#" class="currency-opt" data-currency="USD">USD ($)</a>
+          <span class="currency-divider">|</span>
+          <a href="#" class="currency-opt" data-currency="INR">INR (₹)</a>
+          <span class="currency-divider">|</span>
+          <a href="#" class="currency-opt" data-currency="EUR">EUR (€)</a>
+          <span class="currency-divider">|</span>
+          <a href="#" class="currency-opt" data-currency="GBP">GBP (£)</a>
         </div>
-        <a href="#trackingModal" id="navTrackOrderBtn" style="color: #FFFFFF; font-size: 0.75rem; margin-left: 10px;">
+        <a href="#trackingModal" id="navTrackOrderBtn" class="announcement-track-link">
           <i class="ph ph-truck"></i> Track Order
         </a>
       </div>
@@ -132,22 +126,67 @@
 
   <!-- 3. Mobile Navigation Drawer -->
   <aside class="drawer" id="mobileNavDrawer" aria-label="Mobile Navigation">
-    <div class="drawer-backdrop" id="closeMobileNav"></div>
-    <div class="drawer-panel" style="width: 320px;">
+    <div class="drawer-backdrop" id="closeMobileNav" data-close-drawer></div>
+    <div class="drawer-panel mobile-nav-panel">
       <div class="drawer-header">
-        <span class="brand-title" style="font-size: 1.3rem;">POSHPRINT</span>
+        <div class="brand-logo">
+          <span class="brand-title" style="font-size: 1.35rem;">POSHPRINT</span>
+          <span class="brand-tagline">ATELIER MENU</span>
+        </div>
         <button type="button" class="drawer-close-btn" data-close-drawer aria-label="Close Menu">&times;</button>
       </div>
-      <div class="drawer-body">
-        <div
-          style="display: flex; flex-direction: column; gap: 20px; font-size: 1rem; text-transform: uppercase; font-weight: 600;">
-          <a href="#catalogSection" class="mobile-nav-link" data-filter-style="all">All Drops</a>
-          <a href="#catalogSection" class="mobile-nav-link" data-filter-style="casual">Casual Wear</a>
-          <a href="#catalogSection" class="mobile-nav-link" data-filter-style="professional">Professional & Workwear</a>
-          <a href="#catalogSection" class="mobile-nav-link" data-filter-style="kids">Kids Collection</a>
-          <a href="#catalogSection" class="mobile-nav-link" data-filter-style="shoes">Shoes & Footwear</a>
-          <a href="#customizerSection" class="mobile-nav-link">Bespoke Studio</a>
-          <a href="#trackingModal" class="mobile-nav-link" id="mobileTrackBtn">Order Tracking</a>
+      <div class="drawer-body mobile-drawer-body">
+        <div class="mobile-nav-links-wrap">
+          <a href="#catalogSection" class="mobile-nav-link" data-filter-style="all">
+            <span><i class="ph ph-squares-four"></i> All Drops</span>
+            <i class="ph ph-caret-right nav-arrow"></i>
+          </a>
+          <a href="#catalogSection" class="mobile-nav-link" data-filter-style="casual">
+            <span><i class="ph ph-t-shirt"></i> Casual Wear</span>
+            <i class="ph ph-caret-right nav-arrow"></i>
+          </a>
+          <a href="#catalogSection" class="mobile-nav-link" data-filter-style="professional">
+            <span><i class="ph ph-suit"></i> Professional & Suits</span>
+            <i class="ph ph-caret-right nav-arrow"></i>
+          </a>
+          <a href="#catalogSection" class="mobile-nav-link" data-filter-style="kids">
+            <span><i class="ph ph-baby"></i> Kids Collection</span>
+            <i class="ph ph-caret-right nav-arrow"></i>
+          </a>
+          <a href="#catalogSection" class="mobile-nav-link" data-filter-style="shoes">
+            <span><i class="ph ph-sneaker"></i> Shoes & Footwear</span>
+            <i class="ph ph-caret-right nav-arrow"></i>
+          </a>
+          <a href="#customizerSection" class="mobile-nav-link customizer-highlight-link">
+            <span><i class="ph ph-paint-brush"></i> Bespoke Studio</span>
+            <span class="badge-new-nav">LIVE 3D</span>
+          </a>
+        </div>
+
+        <div class="mobile-drawer-divider"></div>
+
+        <!-- Quick Mobile Navigation Operations -->
+        <div class="mobile-drawer-quick-actions">
+          <a href="#trackingModal" class="mobile-quick-action-btn" id="mobileTrackBtn">
+            <i class="ph ph-truck"></i> Track Active Order
+          </a>
+          <a href="#adminModal" class="mobile-quick-action-btn" id="mobileAdminBtn">
+            <i class="ph ph-sliders"></i> Atelier Management Console
+          </a>
+          <a href="#sizeGuideModal" class="mobile-quick-action-btn" id="mobileSizeGuideBtn">
+            <i class="ph ph-ruler"></i> Garment Sizing Guide
+          </a>
+        </div>
+
+        <!-- Mobile Currency Selector -->
+        <div class="mobile-drawer-currency-section">
+          <span class="mobile-drawer-label">Currency Selection</span>
+          <div class="mobile-currency-grid">
+            <button type="button" class="currency-opt mobile-curr-pill" data-currency="USD">$ USD</button>
+            <button type="button" class="currency-opt mobile-curr-pill" data-currency="INR">₹ INR</button>
+            <button type="button" class="currency-opt mobile-curr-pill" data-currency="EUR">€ EUR</button>
+            <button type="button" class="currency-opt mobile-curr-pill" data-currency="GBP">£ GBP</button>
+          </div>
         </div>
       </div>
     </div>
@@ -222,7 +261,7 @@
           </p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;" class="lifestyle-grid">
+        <div class="lifestyle-grid">
           <!-- Casual Card -->
           <div class="lifestyle-card" data-filter-style="casual"
             style="position: relative; border-radius: 4px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; box-shadow: var(--shadow-sm); group">
@@ -381,7 +420,7 @@
     <!-- 9. Craftsmanship & Fabric Standards -->
     <section class="catalog-section" id="atelierManifesto"
       style="background-color: var(--color-surface); border-top: 1px solid var(--color-border);">
-      <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+      <div class="container manifesto-grid">
         <div>
           <span class="section-subtitle">OUR ATELIER ETHOS</span>
           <h2 class="section-title" style="margin-block: 12px 24px;">Garments Designed To Outlive Fast Fashion.</h2>
@@ -716,18 +755,30 @@
             <!-- Step 3: Payment Method -->
             <div class="checkout-step-panel" id="checkoutStep3">
               <h3 style="font-size: 1.3rem; margin-bottom: 16px;">3. Secure Payment</h3>
-              <div style="display: flex; gap: 16px; margin-bottom: 20px;">
-                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <div class="checkout-payment-methods">
+                <label class="checkout-pay-card">
                   <input type="radio" name="paymentType" value="card" checked />
-                  <span>Credit / Debit Card</span>
+                  <div class="pay-card-meta">
+                    <strong>Credit / Debit Card</strong>
+                    <small>Visa, Mastercard, Amex</small>
+                  </div>
+                  <i class="ph ph-credit-card pay-icon"></i>
                 </label>
-                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <label class="checkout-pay-card">
                   <input type="radio" name="paymentType" value="applepay" />
-                  <span>Apple Pay</span>
+                  <div class="pay-card-meta">
+                    <strong>Apple Pay</strong>
+                    <small>One-touch express</small>
+                  </div>
+                  <i class="ph ph-apple-logo pay-icon"></i>
                 </label>
-                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <label class="checkout-pay-card">
                   <input type="radio" name="paymentType" value="cod" />
-                  <span>Cash on Delivery</span>
+                  <div class="pay-card-meta">
+                    <strong>Cash on Delivery</strong>
+                    <small>Pay upon arrival</small>
+                  </div>
+                  <i class="ph ph-money pay-icon"></i>
                 </label>
               </div>
 
@@ -804,7 +855,7 @@
       <div class="modal-dialog receipt-dialog">
         <button type="button" class="modal-close-corner" data-close-modal>&times;</button>
         <div id="receiptContent"></div>
-        <div style="margin-top: 24px; display: flex; justify-content: space-between; align-items: center;">
+        <div class="receipt-actions-row">
           <button type="button" class="btn btn-outline" id="btnPrintReceipt">
             <i class="ph ph-printer"></i> Print Official Receipt
           </button>
@@ -822,17 +873,17 @@
     <div class="modal-container">
       <div class="modal-dialog" style="max-width: 780px;">
         <button type="button" class="modal-close-corner" data-close-modal>&times;</button>
-        <div style="padding: 32px 32px 0 32px;">
+        <div class="tracking-modal-header">
           <h2 style="font-size: 1.8rem;">Atelier Order Tracker</h2>
           <p style="color: var(--color-muted); font-size: 0.88rem; margin-top: 4px;">Track live progress of your
             screen-printing and dispatch.</p>
 
           <!-- Search Form -->
-          <form id="orderTrackingForm" style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;">
+          <form id="orderTrackingForm" class="tracking-search-form">
             <input type="text" id="trackOrderIdInput" class="form-input" placeholder="Order ID (e.g. POSH-89412)"
-              style="flex: 1; min-width: 200px;" value="POSH-89412" required />
+              value="POSH-89412" required />
             <input type="email" id="trackOrderEmailInput" class="form-input" placeholder="Customer Email"
-              style="flex: 1; min-width: 200px;" value="julian@atelier.com" />
+              value="julian@atelier.com" />
             <button type="submit" class="btn btn-primary">Track Order</button>
           </form>
         </div>

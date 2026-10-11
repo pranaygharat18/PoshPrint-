@@ -407,5 +407,99 @@
 @media (max-width: 900px) {
   .customizer-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .customizer-stage-card {
+    padding: 16px 14px;
+  }
+
+  .stage-canvas-wrapper {
+    aspect-ratio: 1 / 1.1;
+    max-height: 380px;
+  }
+
+  .stage-footer {
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.72rem;
+  }
+
+  .customizer-controls-card {
+    padding: 20px 16px;
+  }
+
+  .controls-header h3 {
+    font-size: 1.3rem;
+  }
+
+  .controls-header p {
+    font-size: 0.8rem;
+  }
+
+  .garment-select-grid {
+    gap: 8px;
+  }
+
+  .garment-chip {
+    padding: 10px;
+  }
+
+  .chip-title {
+    font-size: 0.75rem;
+  }
+
+  .chip-price {
+    font-size: 0.7rem;
+  }
+
+  .color-swatch-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .artwork-upload-dropzone {
+    padding: 16px 12px;
+  }
+
+  .drop-icon {
+    font-size: 1.6rem;
+  }
+
+  .drop-text {
+    font-size: 0.8rem;
+  }
+
+  .drop-hint {
+    font-size: 0.7rem;
+  }
+
+  .preset-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .preset-btn {
+    padding: 8px 4px;
+    font-size: 0.72rem;
+    text-align: center;
+  }
+
+  .size-pill-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+  }
+
+  .size-pill {
+    padding: 8px 2px;
+    font-size: 0.78rem;
+  }
+
+  .price-val {
+    font-size: 1.5rem;
   }
 }
