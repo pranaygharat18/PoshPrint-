@@ -2,6 +2,7 @@
 // Features: Input validation, Luhn credit card validation, price tamper verification, order confirmation receipt.
 
 import { store } from './store.js';
+import { telemetry } from './telemetry.js';
 
 export class CheckoutManager {
   constructor() {
@@ -293,6 +294,16 @@ export class CheckoutManager {
       });
 
       this.lastCreatedOrder = newOrder;
+
+      // Specification 4: Checkout Auto-Cancellation Hook
+      // Send confirmation to cancel any pending 15-minute BullMQ recovery delay timers
+      telemetry.simulateConversion({
+        order_id: newOrder.orderId,
+        amount: Number(finalTotal.toFixed(2)),
+        currency: store.currency || 'USD',
+        coupon_code: store.activePromo?.code || 'POSH15-VIP'
+      });
+
       if (nextBtn) nextBtn.disabled = false;
       this.closeCheckout();
       this.showReceipt(newOrder);

@@ -3,6 +3,7 @@
 
 import { CUSTOM_PRESETS } from './products.js';
 import { store } from './store.js';
+import { telemetry } from './telemetry.js';
 
 export class CustomizerStudio {
   constructor(containerId) {
@@ -379,5 +380,9 @@ export class CustomizerStudio {
       isCustom: true,
       customData
     });
+
+    // Mark bespoke item added to bag to avoid drop-off abandonment trigger
+    telemetry.bespokeAddedToBag = true;
+    telemetry.bespokeInteracted = false;
   }
 }

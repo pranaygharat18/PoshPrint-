@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "test": "node -e \"import('./js/products.js'); import('./js/store.js'); console.log('Syntax and modules validation passed!')\""
+    "test": "node -e \"Promise.all([import('./js/products.js'), import('./js/store.js'), import('./js/telemetry.js'), import('./js/checkout.js'), import('./js/customizer.js')]).then(() => console.log('Syntax, modules, and telemetry validation passed!'))\""
   },
   "keywords": [
     "ecommerce",

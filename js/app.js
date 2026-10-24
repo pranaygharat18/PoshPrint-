@@ -6,6 +6,7 @@ import { store } from './store.js';
 import { CustomizerStudio } from './customizer.js';
 import { CheckoutManager } from './checkout.js';
 import { AdminConsole } from './admin.js';
+import { telemetry } from './telemetry.js';
 
 class App {
   constructor() {
@@ -138,6 +139,7 @@ class App {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
           store.searchQuery = e.target.value.trim().toLowerCase();
+          telemetry.recordSearch(store.searchQuery);
           this.renderProducts();
         }, 220);
       });
@@ -227,6 +229,7 @@ class App {
         mobileNavDrawer?.classList.remove('active');
         this.renderSizeGuide();
         document.getElementById('sizeGuideModal')?.classList.add('active');
+        telemetry.startSizingHesitationTimer(this.selectedProduct || PRODUCTS.find(p => p.id === 'pp-p01'));
       });
     }
 
@@ -246,11 +249,13 @@ class App {
         e.preventDefault();
         this.renderSizeGuide();
         sizeGuideModal.classList.add('active');
+        telemetry.startSizingHesitationTimer(this.selectedProduct || PRODUCTS.find(p => p.id === 'pp-p01'));
       }
 
       const closeGuide = e.target.closest('#closeSizeGuideModal');
       if (closeGuide && sizeGuideModal) {
         sizeGuideModal.classList.remove('active');
+        telemetry.clearSizingHesitationTimer();
       }
 
       // Legal & Policy Modals
@@ -715,6 +720,7 @@ class App {
       const addBtn = container.querySelector('#btnPdpAddToCart');
       if (addBtn) {
         addBtn.addEventListener('click', () => {
+          telemetry.clearSizingHesitationTimer();
           store.addToCart({
             productId: product.id,
             size: this.selectedPdpSize,
@@ -985,5 +991,7 @@ class App {
 
 // Instantiate on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
+  window.store = store;
+  window.telemetry = telemetry;
   window.poshApp = new App();
 });
