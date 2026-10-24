@@ -1,0 +1,61 @@
+# POSHPRINT Luxury Apparel — Netlify Production Configuration
+# Configures build publishing, SPA routing, and security headers including AI Concierge CSP
+
+[build]
+  publish = "."
+
+# SPA Virtual Routes (Section 4.3 Clean URLs)
+[[redirects]]
+  from = "/catalog"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/shop"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/customizer"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/checkout"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/cart"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/tracking"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/orders"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/home"
+  to = "/index.html"
+  status = 200
+
+# Security Headers & AI Lead Engine CSP Integration
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://ais-pre-laf7wyseu7o76hwjq7zxcd-553231830280.asia-east1.run.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://ais-pre-laf7wyseu7o76hwjq7zxcd-553231830280.asia-east1.run.app;"
