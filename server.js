@@ -31,7 +31,7 @@ const server = http.createServer((req, res) => {
   res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
   res.setHeader(
     'Content-Security-Policy',
-    "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://ais-pre-laf7wyseu7o76hwjq7zxcd-553231830280.asia-east1.run.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://ais-pre-laf7wyseu7o76hwjq7zxcd-553231830280.asia-east1.run.app;"
+    "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://ais-dev-laf7wyseu7o76hwjq7zxcd-553231830280.asia-east1.run.app https://ais-pre-laf7wyseu7o76hwjq7zxcd-553231830280.asia-east1.run.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://ais-dev-laf7wyseu7o76hwjq7zxcd-553231830280.asia-east1.run.app https://ais-pre-laf7wyseu7o76hwjq7zxcd-553231830280.asia-east1.run.app;"
   );
 
   let reqPath = decodeURI(req.url.split('?')[0]);

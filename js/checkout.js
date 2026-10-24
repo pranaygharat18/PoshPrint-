@@ -297,18 +297,29 @@ export class CheckoutManager {
 
       // Specification 4: Checkout Auto-Cancellation Hook
       // Send confirmation to cancel any pending 15-minute BullMQ recovery delay timers
-      telemetry.simulateConversion({
-        order_id: newOrder.orderId,
-        amount: Number(finalTotal.toFixed(2)),
-        currency: store.currency || 'USD',
-        coupon_code: store.activePromo?.code || 'POSH15-VIP'
-      });
+      this.onPaymentSuccess(newOrder);
 
       if (nextBtn) nextBtn.disabled = false;
       this.closeCheckout();
       this.showReceipt(newOrder);
       store.emit('toast:show', { message: `Order #${newOrder.orderId} Confirmed!`, type: 'success' });
     }, 900);
+  }
+
+  onPaymentSuccess(order) {
+    if (!order) return;
+    const orderObj = {
+      id: order.id || order.orderId || 'POSH-ORD-9021',
+      total: Number(order.total || 0),
+      discountCode: order.discountCode || store.activePromo?.code || 'POSH15-VIP'
+    };
+
+    telemetry.simulateConversion({
+      order_id: orderObj.id,
+      amount: orderObj.total,
+      currency: store.currency || 'USD',
+      coupon_code: orderObj.discountCode
+    });
   }
 
   updateOrderSummary() {

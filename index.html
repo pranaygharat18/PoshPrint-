@@ -46,7 +46,7 @@
   </script>
 
   <!-- POSHPRINT Autonomous Lead Recovery & Sizing Concierge -->
-  <script async src="https://ais-pre-laf7wyseu7o76hwjq7zxcd-553231830280.asia-east1.run.app/poshprint-telemetry.js"></script>
+  <script async src="https://ais-dev-laf7wyseu7o76hwjq7zxcd-553231830280.asia-east1.run.app/poshprint-telemetry.js"></script>
 </head>
 
 <body>
@@ -667,14 +667,16 @@
               <h3 style="font-size: 1.3rem; margin-bottom: 16px;">1. Customer & Shipping Address</h3>
               <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label" for="shippingFullName">Full Legal Name</label>
-                  <input type="text" id="shippingFullName" class="form-input" placeholder="e.g. Julian Vance"
-                    value="Julian Vance" required />
+                  <label class="form-label" for="checkoutFirstName">Full Legal Name</label>
+                  <input type="text" id="checkoutFirstName" name="checkoutFirstName" class="form-input" placeholder="e.g. Julian Vance"
+                    value="Julian Vance" required oninput="const el = document.getElementById('shippingFullName'); if(el) el.value = this.value;" />
+                  <input type="hidden" id="shippingFullName" value="Julian Vance" />
                 </div>
                 <div class="form-group">
-                  <label class="form-label" for="shippingEmail">Email Address</label>
-                  <input type="email" id="shippingEmail" class="form-input" placeholder="e.g. julian@atelier.com"
-                    value="julian@atelier.com" required />
+                  <label class="form-label" for="checkoutEmail">Email Address</label>
+                  <input type="email" id="checkoutEmail" name="checkoutEmail" class="form-input" placeholder="e.g. julian@atelier.com"
+                    value="julian@atelier.com" required oninput="const el = document.getElementById('shippingEmail'); if(el) el.value = this.value;" />
+                  <input type="hidden" id="shippingEmail" value="julian@atelier.com" />
                 </div>
               </div>
 
@@ -709,10 +711,17 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label class="form-label" for="shippingPhone">Phone (For Courier SMS)</label>
-                  <input type="tel" id="shippingPhone" class="form-input" placeholder="+1 (555) 019-2831"
-                    value="+1 (555) 019-2831" />
+                  <label class="form-label" for="checkoutPhone">Phone (For Courier SMS)</label>
+                  <input type="tel" id="checkoutPhone" name="checkoutPhone" class="form-input" placeholder="+1 (555) 019-2831"
+                    value="+1 (555) 019-2831" oninput="const el = document.getElementById('shippingPhone'); if(el) el.value = this.value;" />
+                  <input type="hidden" id="shippingPhone" value="+1 (555) 019-2831" />
                 </div>
+              </div>
+
+              <div class="form-group" style="margin-top: 10px;">
+                <label class="form-label" for="checkoutInstagram">Instagram Handle (VIP Sizing Concierge)</label>
+                <input type="text" id="checkoutInstagram" name="checkoutInstagram" class="form-input" placeholder="@patron_atelier"
+                  value="@patron_atelier" />
               </div>
             </div>
 

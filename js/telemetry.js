@@ -4,8 +4,8 @@
 import { PRODUCTS } from './products.js';
 
 export const TELEMETRY_CONFIG = {
-  CAPTURE_ENDPOINT: 'https://ais-pre-laf7wyseu7o76hwjq7zxcd-553231830280.asia-east1.run.app/api/v1/leads/capture',
-  CONVERSION_ENDPOINT: 'https://ais-pre-laf7wyseu7o76hwjq7zxcd-553231830280.asia-east1.run.app/api/v1/webhooks/simulate-conversion',
+  CAPTURE_ENDPOINT: 'https://ais-dev-laf7wyseu7o76hwjq7zxcd-553231830280.asia-east1.run.app/api/v1/leads/capture',
+  CONVERSION_ENDPOINT: 'https://ais-dev-laf7wyseu7o76hwjq7zxcd-553231830280.asia-east1.run.app/api/v1/webhooks/simulate-conversion',
   DEFAULT_SESSION_PREFIX: 'posh_sess_',
   SIZING_HESITATION_DELAY_MS: 40000, // 40 seconds deliberation threshold
   INACTIVITY_TIMEOUT_MS: 15 * 60 * 1000, // 15 minutes inactivity threshold
@@ -15,9 +15,9 @@ export const TELEMETRY_CONFIG = {
 
 class PoshTelemetryEngine {
   constructor() {
-    this.sessionId = this.initSessionId();
     this.sessionStartTime = Date.now();
     this.lastActivityTime = Date.now();
+    this.sessionId = this.initSessionId();
     this.recentSearches = this.initRecentSearches();
 
     // Trigger state tracking
@@ -29,6 +29,11 @@ class PoshTelemetryEngine {
     this.bespokeAddedToBag = false;
     this.inactivityInterval = null;
 
+    if (typeof window !== 'undefined') {
+      window.sessionStartTime = window.sessionStartTime || this.sessionStartTime;
+      window.recentSearches = window.recentSearches || this.recentSearches;
+    }
+
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       this.init();
     }
@@ -37,11 +42,19 @@ class PoshTelemetryEngine {
   // --- Session & Identity Management ---
   initSessionId() {
     try {
-      let id = sessionStorage.getItem('posh_telemetry_session_id');
+      let id = (typeof localStorage !== 'undefined' ? localStorage.getItem('poshprint_session_id') : null) ||
+               (typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('posh_telemetry_session_id') : null);
+
       if (!id) {
         id = `${TELEMETRY_CONFIG.DEFAULT_SESSION_PREFIX}${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
-        sessionStorage.setItem('posh_telemetry_session_id', id);
+        if (typeof localStorage !== 'undefined') localStorage.setItem('poshprint_session_id', id);
+        if (typeof sessionStorage !== 'undefined') sessionStorage.setItem('posh_telemetry_session_id', id);
       }
+
+      if (typeof localStorage !== 'undefined' && !localStorage.getItem('poshprint_lead_id')) {
+        localStorage.setItem('poshprint_lead_id', id);
+      }
+
       return id;
     } catch {
       return `${TELEMETRY_CONFIG.DEFAULT_SESSION_PREFIX}${Date.now()}_std`;
@@ -49,12 +62,20 @@ class PoshTelemetryEngine {
   }
 
   getSessionId() {
+    if (typeof localStorage !== 'undefined') {
+      const stored = localStorage.getItem('poshprint_session_id');
+      if (stored) return stored;
+    }
     return this.sessionId;
   }
 
   initRecentSearches() {
     try {
-      const stored = sessionStorage.getItem('posh_recent_searches');
+      if (typeof window !== 'undefined' && Array.isArray(window.recentSearches) && window.recentSearches.length > 0) {
+        return window.recentSearches;
+      }
+      const stored = (typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('posh_recent_searches') : null) ||
+                     (typeof localStorage !== 'undefined' ? localStorage.getItem('posh_recent_searches') : null);
       if (stored) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) return parsed;
@@ -71,37 +92,46 @@ class PoshTelemetryEngine {
     if (!clean || clean.length < 2) return;
 
     this.recentSearches = [clean, ...this.recentSearches.filter(s => s !== clean)].slice(0, 8);
+
+    if (typeof window !== 'undefined') {
+      window.recentSearches = this.recentSearches;
+    }
+
     try {
-      sessionStorage.setItem('posh_recent_searches', JSON.stringify(this.recentSearches));
+      if (typeof sessionStorage !== 'undefined') sessionStorage.setItem('posh_recent_searches', JSON.stringify(this.recentSearches));
+      if (typeof localStorage !== 'undefined') localStorage.setItem('posh_recent_searches', JSON.stringify(this.recentSearches));
     } catch {
       // ignore storage limits
     }
   }
 
   getDwellTimeSeconds() {
-    return Math.max(1, Math.floor((Date.now() - this.sessionStartTime) / 1000));
+    const startTime = (typeof window !== 'undefined' && window.sessionStartTime) || this.sessionStartTime;
+    return Math.max(1, Math.floor((Date.now() - startTime) / 1000));
   }
 
   getDeviceType() {
     if (typeof window === 'undefined') return 'desktop';
-    const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    return isMobile ? 'mobile' : 'desktop';
+    return window.innerWidth < 768 ? 'mobile' : 'desktop';
   }
 
   getCustomerInfo() {
     let fullName = '';
     let email = '';
     let phone = '';
+    let instagram = '';
 
     if (typeof document !== 'undefined') {
       // 1. Pull from active Checkout inputs if present
-      const nameInput = document.getElementById('shippingFullName');
-      const emailInput = document.getElementById('shippingEmail');
-      const phoneInput = document.getElementById('shippingPhone');
+      const nameInput = document.getElementById('checkoutFirstName') || document.getElementById('shippingFullName');
+      const emailInput = document.getElementById('checkoutEmail') || document.getElementById('shippingEmail');
+      const phoneInput = document.getElementById('checkoutPhone') || document.getElementById('shippingPhone');
+      const instaInput = document.getElementById('checkoutInstagram');
 
       fullName = (nameInput?.value || '').trim();
       email = (emailInput?.value || '').trim();
       phone = (phoneInput?.value || '').trim();
+      instagram = (instaInput?.value || '').trim();
     }
 
     // 2. Fallback to store orders or saved profiles
@@ -118,7 +148,7 @@ class PoshTelemetryEngine {
       first_name: fullName || 'Valued Patron',
       email: email || 'customer@example.com',
       phone: phone || '+14155552671',
-      instagram_handle: '@instagram_handle'
+      instagram_handle: instagram || '@instagram_handle'
     };
   }
 
@@ -147,7 +177,7 @@ class PoshTelemetryEngine {
         color: item.color || 'Standard'
       }));
 
-      const cartValue = Number((storeObj.getCartSubtotal ? storeObj.getCartSubtotal() : 0).toFixed(2));
+      const cartValue = Number((storeObj.getCartTotal ? storeObj.getCartTotal() : (storeObj.getCartSubtotal ? storeObj.getCartSubtotal() : 0)).toFixed(2));
       return {
         cart_items: items,
         cart_value: cartValue,
@@ -197,17 +227,21 @@ class PoshTelemetryEngine {
     const customer = this.getCustomerInfo();
     const cartData = this.getCartData(contextProduct);
 
+    const storeObj = typeof window !== 'undefined' ? window.store : null;
+    const activeCart = storeObj?.cart && storeObj.cart.length > 0 ? storeObj.cart : cartData.cart_items;
+    const activeCartVal = storeObj ? (typeof storeObj.getCartTotal === 'function' ? storeObj.getCartTotal() : storeObj.getCartSubtotal()) : cartData.cart_value;
+
     const payload = {
-      external_session_id: this.sessionId,
-      first_name: customer.first_name,
-      email: customer.email,
-      phone: customer.phone,
-      instagram_handle: customer.instagram_handle,
-      device_type: this.getDeviceType(),
-      cart_value: cartData.cart_value,
-      currency: cartData.currency,
-      cart_items: cartData.cart_items,
-      recent_searches: this.recentSearches,
+      external_session_id: (typeof localStorage !== 'undefined' && localStorage.getItem('poshprint_session_id')) || this.sessionId,
+      first_name: (typeof document !== 'undefined' && (document.getElementById('checkoutFirstName')?.value || document.getElementById('shippingFullName')?.value)) || customer.first_name,
+      email: (typeof document !== 'undefined' && (document.getElementById('checkoutEmail')?.value || document.getElementById('shippingEmail')?.value)) || customer.email,
+      phone: (typeof document !== 'undefined' && (document.getElementById('checkoutPhone')?.value || document.getElementById('shippingPhone')?.value)) || customer.phone,
+      instagram_handle: (typeof document !== 'undefined' && document.getElementById('checkoutInstagram')?.value) || customer.instagram_handle,
+      device_type: (typeof window !== 'undefined' && window.innerWidth < 768) ? 'mobile' : 'desktop',
+      cart_value: activeCartVal,
+      currency: (storeObj && storeObj.currency) || 'USD',
+      cart_items: activeCart,
+      recent_searches: (typeof window !== 'undefined' && window.recentSearches) ? window.recentSearches : this.recentSearches,
       dwell_time_seconds: this.getDwellTimeSeconds(),
       event_type: eventType,
       drop_off_reason: dropOffReason
@@ -266,11 +300,10 @@ class PoshTelemetryEngine {
   // --- Checkout Auto-Cancellation Webhook ---
   async simulateConversion(orderData) {
     const payload = {
-      lead_id: this.sessionId,
-      order_id: orderData.orderId || orderData.order_id || 'POSH-ORD-9021',
+      lead_id: (typeof localStorage !== 'undefined' && (localStorage.getItem('poshprint_lead_id') || localStorage.getItem('poshprint_session_id'))) || this.sessionId,
+      order_id: orderData.order_id || orderData.orderId || orderData.id || 'POSH-ORD-9021',
       amount: Number(orderData.amount || orderData.total || 0),
-      currency: orderData.currency || (typeof window !== 'undefined' && window.store ? window.store.currency : 'USD'),
-      coupon_code: orderData.couponCode || orderData.coupon_code || (typeof window !== 'undefined' && window.store?.activePromo?.code ? window.store.activePromo.code : 'POSH15-VIP')
+      coupon_code: orderData.coupon_code || orderData.couponCode || orderData.discountCode || (typeof window !== 'undefined' && window.store?.activePromo?.code ? window.store.activePromo.code : 'POSH15-VIP')
     };
 
     console.group('%c[POSHPRINT Conversion Webhook] Order Completed — Cancelling Recovery Delay Timers', 'color: #D8CCA3; font-weight: bold;');

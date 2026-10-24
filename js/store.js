@@ -186,6 +186,10 @@ class Store {
     return this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   }
 
+  getCartTotal() {
+    return this.getCartSubtotal();
+  }
+
   // --- Promo Engine ---
   loadPromo() {
     try {
